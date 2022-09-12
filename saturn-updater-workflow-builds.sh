@@ -1,9 +1,9 @@
 #!/bin/sh
-version=0.2.5
+version=0.3
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
-#  20220912 0.2.5  Removed BIOS update function. Will release later as separate script.
+#  20220912 0.3  Removed BIOS update function. Will release later as separate script.
 #  20220912 0.2    Updates to optimize script.
 #  20220907 0.1    Initial version.
 # 
