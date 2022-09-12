@@ -1,5 +1,5 @@
 #!/bin/sh
-version=0.3
+version=0.3.5
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
@@ -44,6 +44,13 @@ selfurl_version="$(urlcat "$selfurl"|sed -n 's,^version=,,;2p')"
   tempfile="$(mktemp -u)"; download "$tempfile" "$selfurl"
   mv "$tempfile" "$self";chmod +x "$self";exec "$self"; exit 99
 }
+
+echo "█▀ ▄▀█ ▀█▀ █░█ █▀█ █▄░█   █▀▀ █▀█ █▀█ █▀▀"
+echo "▄█ █▀█ ░█░ █▄█ █▀▄ █░▀█   █▄▄ █▄█ █▀▄ ██▄"
+echo ""
+echo "█░█ █▀█ █▀▄ ▄▀█ ▀█▀ █▀▀ █▀█"
+echo "█▄█ █▀▀ █▄▀ █▀█ ░█░ ██▄ █▀▄  v. $version"
+echo ""
 
 storagedir="/media/fat"
 coredir="$storagedir/_Unstable";makedir "$coredir"
