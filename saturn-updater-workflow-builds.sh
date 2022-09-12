@@ -3,6 +3,7 @@ version=0.2
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
+#  20220912 updates to optimize script.
 #  20220907 initial version.
 # 
 #  Based on MiSTer-unstable-nightlies Updater (c) 2021 by Akuma GPLv2
@@ -48,8 +49,10 @@ selfurl_version="$(urlcat "$selfurl"|sed -n 's,^version=,,;2p')"
 
 storagedir="/media/fat"
 coredir="$storagedir/_Unstable";makedir "$coredir"
-gamesdir="$storagedir/games";makedir "$coredir"
-basedir="$gamesdir/${corename}";makedir "$basedir"
+basedir="$(find /media -ipath "\*/$corename" -type d)"
+if [ basedir = "" ]; then
+  basedir="$storagedir/games/${corename}";makedir "$basedir"
+fi
 biosdir="$basedir/.bios";makedir "$biosdir"
 
 biosurl="https://archive.org/download/segasaturnbios/Sega%20Saturn%20BIOS.zip"
@@ -68,32 +71,23 @@ biosfile="$basedir/saturnbios.zip"
 nightlyurl="$(curl -sL --insecure https://nightly.link/srg320/Saturn_MiSTer/blob/master/.github/workflows/test-build.yml | grep -Eo '[>]https://.*[.zip]' | head -1 | cut -c2-)"
 corezip="$coredir/${nightlyurl##*/}"
 corefile="$coredir/$(echo ${nightlyurl##*/} | cut -f 1 -d '.').rbf"
-url="$nightlyurl"
-[ -f "$corefile" ] && echo "Core already up to date."
-[ -f "$corefile" ] || echo "Downloading latest core..."
-[ -f "$corefile" ] || download "$corezip" "$url"
-[ -f "$corezip" ] && unpack "$corezip" "$coredir"
-[ -f "$corezip" ] && rm "$corezip" && find "$coredir" -iname "*.fit_*.txt" -delete
-#find "$coredir" -iname "*.fit_*.txt" -delete
-#ln -sf "$corefile" "$coredir/$corename_latest.rbf"
+if [ -f "$corefile" ]; then
+  echo "Core already up to date."
+else
+  echo "Downloading latest core..."
+  download "$corezip" "$nightlyurl"
+  if [ -f "$corezip" ]; then
+    unpack "$corezip" "$coredir"
+    rm "$corezip"
+    find "$coredir" -iname "*.fit_*.txt" -delete
+  fi
+fi
 
-# mainurl="$selfurl"
-# mainfile="/media/fat/Scripts/${mainurl##*/}"
-# [ -f "$mainfile" ] || download "$mainfile" "$mainurl"
-
-#misterhash="05074084b1469c75648d7eb4f1fb2a7c"
-#misterfile="/media/fat/MiSTer"
-#md5sum "$misterfile"|grep -q "$misterhash" && echo -e "NOTICE: Please update MAIN with: \"${mainurl##*/}\"\n"
 
 [ -n "$maxkeep" -a -n "$coredir" -a -n "$corename" ] \
   && { ls -t "${coredir}/${corename}_"*".rbf"|awk "NR>$maxkeep"|xargs -r rm;}
 
 commiturl="https://github.com/srg320/Saturn_MiSTer/commits/master"
 gitversion="$(urlcat "$commiturl"|grep "Commits on"|head -1|sed 's,^.*Commits on ,,;s,<.*$,,')"
-
-###
-#echo $nightlyurl
-#echo $corezip
-#echo $corefile
 
 exit 0
