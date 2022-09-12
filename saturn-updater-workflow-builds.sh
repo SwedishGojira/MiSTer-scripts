@@ -1,11 +1,12 @@
 #!/bin/sh
-version=0.3.5
+version=0.4
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
+#  20220912 0.4  Inserted ASCII art header.
 #  20220912 0.3  Removed BIOS update function. Will release later as separate script.
-#  20220912 0.2    Updates to optimize script.
-#  20220907 0.1    Initial version.
+#  20220912 0.2  Updates to optimize script.
+#  20220907 0.1  Initial version.
 # 
 #  Based on MiSTer-unstable-nightlies Updater (c) 2021 by Akuma GPLv2
 #  Also uses nightly.link (c) 2020 Oleh Prypin (https://nightly.link/)
