@@ -41,10 +41,14 @@ unpack(){ unzip -j -o "$1" -d "$2" >/dev/null 2>&1 || exit 105;}
 selfurl="https://raw.githubusercontent.com/SwedishGojira/MiSTer-scripts/main/saturn-updater-workflow-builds.sh"
 selfurl_version="$(urlcat "$selfurl"|sed -n 's,^version=,,;2p')"
 
-[ "$selfurl_version" = "$version" ] || {
-  tempfile="$(mktemp -u)"; download "$tempfile" "$selfurl"
-  mv "$tempfile" "$self";chmod +x "$self";exec "$self"; exit 99
-}
+if [ ! "$selfurl_version" = "$version" ]; then
+  tempfile="$(mktemp -u)"
+  download "$tempfile" "$selfurl"
+  mv "$tempfile" "$self"
+  chmod +x "$self"
+  exec "$self"
+  exit 99
+fi
 
 echo "█▀ ▄▀█ ▀█▀ █░█ █▀█ █▄░█   █▀▀ █▀█ █▀█ █▀▀"
 echo "▄█ █▀█ ░█░ █▄█ █▀▄ █░▀█   █▄▄ █▄█ █▀▄ ██▄"
