@@ -38,13 +38,13 @@ urlcat(){ wget --no-cache -q "$1" -O - || exit 100;}
 checksum(){ md5sum "$1"|grep -q "$2" || { rm "$1";exit 103;};}
 unpack(){ unzip -j -o "$1" -d "$2" >/dev/null 2>&1 || exit 105;}
 
-# selfurl="https://raw.githubusercontent.com/Akuma-Git/misterfpga/main/unstable-update_saturn-nightlies.sh"
-# selfurl_version="$(urlcat "$selfurl"|sed -n 's,^version=,,;2p')"
-# 
-# [ "$selfurl_version" = "$version" ] || {
-#   tempfile="$(mktemp -u)"; download "$tempfile" "$selfurl"
-#   mv "$tempfile" "$self";chmod +x "$self";exec "$self"; exit 99
-# }
+selfurl="https://raw.githubusercontent.com/SwedishGojira/MiSTer-scripts/main/saturn-updater-workflow-builds.sh"
+selfurl_version="$(urlcat "$selfurl"|sed -n 's,^version=,,;2p')"
+
+[ "$selfurl_version" = "$version" ] || {
+  tempfile="$(mktemp -u)"; download "$tempfile" "$selfurl"
+  mv "$tempfile" "$self";chmod +x "$self";exec "$self"; exit 99
+}
 
 storagedir="/media/fat"
 coredir="$storagedir/_Unstable";makedir "$coredir"
@@ -77,7 +77,7 @@ url="$nightlyurl"
 #find "$coredir" -iname "*.fit_*.txt" -delete
 #ln -sf "$corefile" "$coredir/$corename_latest.rbf"
 
-# mainurl="https://raw.githubusercontent.com/Akuma-Git/misterfpga/main/unstable-update_main-nightlies.sh"
+# mainurl="$selfurl"
 # mainfile="/media/fat/Scripts/${mainurl##*/}"
 # [ -f "$mainfile" ] || download "$mainfile" "$mainurl"
 
