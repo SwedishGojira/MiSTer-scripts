@@ -1,5 +1,5 @@
 #!/bin/sh
-version=0.5
+version=0.6
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
