@@ -74,6 +74,7 @@ else
   fi
 fi
 
+ln -sf "$corefile" "$coredir/ Saturn_latest.rbf"
 
 [ -n "$maxkeep" -a -n "$coredir" -a -n "$corename" ] \
   && { ls -t "${coredir}/${corename}_"*".rbf"|awk "NR>$maxkeep"|xargs -r rm;}
