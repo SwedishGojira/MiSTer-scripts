@@ -1,5 +1,5 @@
 #!/bin/sh
-version=0.4
+version=0.5
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
@@ -50,16 +50,16 @@ if [ ! "$selfurl_version" = "$version" ]; then
   exit 99
 fi
 
-echo "█▀ ▄▀█ ▀█▀ █░█ █▀█ █▄░█   █▀▀ █▀█ █▀█ █▀▀"
-echo "▄█ █▀█ ░█░ █▄█ █▀▄ █░▀█   █▄▄ █▄█ █▀▄ ██▄"
+echo -e "\e[0m█▀ ▄▀█ ▀█▀ █\e[34m░\e[39m█ █▀█ █▄\e[34m░\e[39m█   █▀▀ █▀█ █▀█ █▀▀"
+echo -e "▄█ █▀█ \e[34m░\e[39m█\e[34m░\e[39m █▄█ █▀▄ █\e[34m░\e[39m▀█   █▄▄ █▄█ █▀▄ ██▄"
 echo ""
-echo "█░█ █▀█ █▀▄ ▄▀█ ▀█▀ █▀▀ █▀█"
-echo "█▄█ █▀▀ █▄▀ █▀█ ░█░ ██▄ █▀▄  v. $version"
+echo -e "\e[39m█\e[34m░\e[39m█ █▀█ █▀▄ ▄▀█ ▀█▀ █▀▀ █▀█  \e[1m\e[34mversion. $version\e[0m"
+echo -e "█▄█ █▀▀ █▄▀ █▀█ \e[34m░\e[39m█\e[34m░\e[39m ██▄ █▀▄  \e[34m░░░░░░░░ ░░░\e[0m"
 echo ""
 
 storagedir="/media/fat"
 coredir="$storagedir/_Unstable";makedir "$coredir"
-nightlyurl="$(curl -sL --insecure https://nightly.link/srg320/Saturn_MiSTer/blob/master/.github/workflows/test-build.yml | grep -Eo '[>]https://.*[.zip]' | head -1 | cut -c2-)"
+nightlyurl="$(curl -sL --insecure https://nightly.link/srg320/Saturn_MiSTer/blob/master/.github/workflows/test-build$DS.yml | grep -Eo '[>]https://.*[.zip]' | head -1 | cut -c2-)"
 corezip="$coredir/${nightlyurl##*/}"
 corefile="$coredir/$(echo ${nightlyurl##*/} | cut -f 1 -d '.').rbf"
 if [ -f "$corefile" ]; then
@@ -80,5 +80,7 @@ fi
 
 commiturl="https://github.com/srg320/Saturn_MiSTer/commits/master"
 gitversion="$(urlcat "$commiturl"|grep "Commits on"|head -1|sed 's,^.*Commits on ,,;s,<.*$,,')"
+
+DS=""
 
 exit 0
