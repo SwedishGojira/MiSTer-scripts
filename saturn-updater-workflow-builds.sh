@@ -1,13 +1,8 @@
 #!/bin/sh
-version=0.6
+version=0.7
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
-#  20220912 0.4  Inserted ASCII art header.
-#  20220912 0.3  Removed BIOS update function. Will release later as separate script.
-#  20220912 0.2  Updates to optimize script.
-#  20220907 0.1  Initial version.
-# 
 #  Based on MiSTer-unstable-nightlies Updater (c) 2021 by Akuma GPLv2
 #  Also uses nightly.link (c) 2020 Oleh Prypin (https://nightly.link/)
 #
@@ -74,7 +69,8 @@ else
   fi
 fi
 
-ln -sf "$corefile" "$coredir/ Saturn_latest.rbf"
+[ -f "$coredir/ Saturn_latest.rbf" ] && "rm $coredir/ Saturn_latest.rbf"
+ln -sf "$corefile" "$coredir/Saturn_latest.rbf"
 
 [ -n "$maxkeep" -a -n "$coredir" -a -n "$corename" ] \
   && { ls -t "${coredir}/${corename}_"*".rbf"|awk "NR>$maxkeep"|xargs -r rm;}
