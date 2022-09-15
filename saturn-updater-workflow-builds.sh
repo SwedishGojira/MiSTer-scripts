@@ -1,5 +1,5 @@
 #!/bin/sh
-version=0.7
+version=0.8
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
@@ -69,7 +69,10 @@ else
   fi
 fi
 
-[ -f "$coredir/ Saturn_latest.rbf" ] && "rm $coredir/ Saturn_latest.rbf"
+if [ -f "$coredir/ Saturn_latest.rbf" ]; then
+  rm "$coredir/ Saturn_latest.rbf"
+fi
+
 ln -sf "$corefile" "$coredir/Saturn_latest.rbf"
 
 [ -n "$maxkeep" -a -n "$coredir" -a -n "$corename" ] \
