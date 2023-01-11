@@ -1,5 +1,5 @@
 #!/bin/sh
-version=0.9
+version=1.0
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
@@ -54,7 +54,10 @@ echo ""
 
 storagedir="/media/fat"
 coredir="$storagedir/_Unstable";makedir "$coredir"
-nightlyurl="$(curl -sL --insecure https://nightly.link/srg320/Saturn_MiSTer/blob/master/.github/workflows/test-build$DS.yml | grep -Eo '[>]https://.*[.zip]' | head -1 | cut -c2-)"
+nightlyurl="$(curl -sL --insecure https://nightly.link/srg320/Saturn_MiSTer/blob/master/.github/workflows/test-build$DS.yml | grep -Eo '[>]https://.*[.zip]' | head -1 | cut -c2- | grep .zip)"
+if [ "$nightlyurl" = "" ]; then
+  exit 100
+fi
 corezip="$coredir/${nightlyurl##*/}"
 corefile="$coredir/$(echo ${nightlyurl##*/} | cut -f 1 -d '.').rbf"
 if [ -f "$corefile" ]; then
