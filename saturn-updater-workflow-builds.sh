@@ -29,8 +29,8 @@ result(){
 }
 
 makedir(){ [ -d "$1" ] || { mkdir -p "$1" || exit 101;};}
-download(){ wget --no-cache --read-timeout=3.0  --tries=2 -q "$2" -O "$1" || { rm "$1";exit 102;};}
-urlcat(){ wget --no-cache --read-timeout=3.0  --tries=2 -q "$1" -O - || exit 100;}
+download(){ wget --no-cache --read-timeout=10.0 --tries=2 -q "$2" -O "$1" || { rm "$1";exit 102;};}
+urlcat(){ wget --no-cache --read-timeout=10.0 --tries=2 -q "$1" -O - || exit 100;}
 unpack(){ unzip -j -o "$1" -d "$2" >/dev/null 2>&1 || exit 105;}
 
 selfurl="https://raw.githubusercontent.com/SwedishGojira/MiSTer-scripts/main/saturn-updater-workflow-builds.sh"
