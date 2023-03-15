@@ -1,5 +1,5 @@
 #!/bin/sh
-version=1.1
+version=2.0
 #
 #  Saturn Updater based on workflow builds  (c) 2022 by SwedishGojira GPLv2
 #
@@ -8,6 +8,12 @@ version=1.1
 #
 
 corename="Saturn"
+
+backupformat="Single"
+
+if [ ! "$DS" = "" ]; then
+  backupformat="Dual"
+fi
 
 self="$(readlink -f "$0")"
 
@@ -33,8 +39,14 @@ download(){ wget --no-cache --read-timeout=10.0 --tries=2 -q "$2" -O "$1" || { r
 urlcat(){ wget --no-cache --read-timeout=10.0 --tries=2 -q "$1" -O - || exit 100;}
 unpack(){ unzip -j -o "$1" -d "$2" >/dev/null 2>&1 || exit 105;}
 
+commiturl="https://github.com/srg320/Saturn_MiSTer/commits/master"
+commitdate="$(urlcat "$commiturl"|grep "Commits on"|head -1|sed 's,^.*Commits on ,,;s,<.*$,,')"
+commitnumdate="$(date -d"$commitdate" +%Y%m%d)"
+gitversion="$commitdate"
+
 selfurl="https://raw.githubusercontent.com/SwedishGojira/MiSTer-scripts/main/saturn-updater-workflow-builds.sh"
 selfurl_version="$(urlcat "$selfurl"|sed -n 's,^version=,,;2p')"
+
 
 if [ ! "$selfurl_version" = "$version" ]; then
   tempfile="$(mktemp -u)"
@@ -54,18 +66,25 @@ echo ""
 
 storagedir="/media/fat"
 coredir="$storagedir/_Unstable";makedir "$coredir"
+core="${corename}${DS}_${commitnumdate}.rbf"
+corefile="$coredir/$core"
+corezip="$coredir/core.zip"
 nightlyurl="$(curl -sL --insecure https://nightly.link/srg320/Saturn_MiSTer/blob/master/.github/workflows/test-build$DS.yml | grep -Eo '[>]https://.*[.zip]' | head -1 | cut -c2- | grep .zip)"
+if [ "$nightlyurl" = "" ]; then
+  #exit 100
+  nightlyurl="$(wget -q -O- https://api.github.com/repos/MiSTer-unstable-nightlies/Saturn_MiSTer/releases | grep "browser_download_url" | grep ".rbf" | grep "Single" | grep "$commitnumdate" | head -n 1 | cut -d \" -f4)"
+  corezip="$corefile"
+fi
 if [ "$nightlyurl" = "" ]; then
   exit 100
 fi
-corezip="$coredir/${nightlyurl##*/}"
-corefile="$coredir/$(echo ${nightlyurl##*/} | cut -f 1 -d '.').rbf"
+
 if [ -f "$corefile" ]; then
   echo "Core already up to date."
 else
   echo "Downloading latest core..."
   download "$corezip" "$nightlyurl"
-  if [ -f "$corezip" ]; then
+  if [ -f "$coredir/core.zip" ]; then
     unpack "$corezip" "$coredir"
     rm "$corezip"
     find "$coredir" -iname "*.fit_*.txt" -delete
@@ -81,9 +100,8 @@ ln -sf "$corefile" "$coredir/ Saturn_latest.rbf"
 [ -n "$maxkeep" -a -n "$coredir" -a -n "$corename" ] \
   && { ls -t "${coredir}/${corename}_"*".rbf"|awk "NR>$maxkeep"|xargs -r rm;}
 
-commiturl="https://github.com/srg320/Saturn_MiSTer/commits/master"
-gitversion="$(urlcat "$commiturl"|grep "Commits on"|head -1|sed 's,^.*Commits on ,,;s,<.*$,,')"
 
 DS=""
 
 exit 0
+
