@@ -10,8 +10,3 @@ Small scripts that will download the latest successful build of the Saturn core 
 As the builds on srg320's github are only available for 90 days before they are automatically deleted the script will now use the unstable builds from [MiSTer-unstable-nightlies /
 Saturn_MiSTer](https://github.com/MiSTer-unstable-nightlies/Saturn_MiSTer) as backup.
 
-
-## Saturn bios installer scripts
-Small scripts that will download and install the US or JP recommended bios for the Saturn core.
-
-You only need to install one of the bios, not both. Just make sure you set the region in the core settings to the region matching the game you are loading and it should be working.
