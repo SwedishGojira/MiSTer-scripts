@@ -7,7 +7,7 @@ biosversion="1.01"
 name=jp
 # ===
 
-version=0.1
+version=1.0
 
 echo ""
 echo -e "█▀▀ █▀▀█ ▀▀█▀▀ █\e[34m░░\e[39m█ █▀▀█ █▀▀▄ 　 █▀▀▄ ▀█▀ █▀▀█ █▀▀ "
