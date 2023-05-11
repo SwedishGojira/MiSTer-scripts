@@ -8,16 +8,6 @@ biosversion="1.01a"
 name=us
 # ===
 
-echo ""
-echo -e "█▀▀ █▀▀█ ▀▀█▀▀ █\e[34m░░\e[39m█ █▀▀█ █▀▀▄ 　 █▀▀▄ ▀█▀ █▀▀█ █▀▀ "
-echo -e "▀▀█ █▄▄█ \e[34m░░\e[39m█\e[34m░░\e[39m █\e[34m░░\e[39m█ █▄▄▀ █\e[34m░░\e[39m█ 　 █▀▀▄ \e[34m░\e[39m█\e[34m░\e[39m █\e[34m░░\e[39m█ ▀▀█ "
-echo -e "▀▀▀ ▀\e[34m░░\e[39m▀ \e[34m░░\e[39m▀\e[34m░░\e[39m \e[34m░\e[39m▀▀▀ ▀\e[34m░\e[39m▀▀ ▀\e[34m░░\e[39m▀ 　 ▀▀▀\e[34m░\e[39m ▀▀▀ ▀▀▀▀ ▀▀▀ "
-echo ""
-echo -e "█▀▀▄ █▀▀█ █\e[34m░░░\e[39m█ █▀▀▄ █\e[34m░░\e[39m █▀▀█ █▀▀█ █▀▀▄ █▀▀ █▀▀█ "
-echo -e "█\e[34m░░\e[39m█ █\e[34m░░\e[39m█ █▄█▄█ █\e[34m░░\e[39m█ █\e[34m░░\e[39m █\e[34m░░\e[39m█ █▄▄█ █\e[34m░░\e[39m█ █▀▀ █▄▄▀ \e[1m\e[34mversion $version\e[0m"
-echo -e "▀▀▀\e[34m░\e[39m ▀▀▀▀ \e[34m░\e[39m▀\e[34m░\e[39m▀\e[34m░\e[39m ▀\e[34m░░\e[39m▀ ▀▀▀ ▀▀▀▀ ▀\e[34m░░\e[39m▀ ▀▀▀\e[34m░\e[39m ▀▀▀ ▀\e[34m░\e[39m▀▀ \e[34m░░░░░░░ ░░░\e[39m"
-echo ""
-
 biospath=""
 
 corename="Saturn"
@@ -56,6 +46,17 @@ selfurl_version="$(urlcat "$selfurl"|sed -n 's,^version=,,;2p')"
   tempfile="$(mktemp -u)"; download "$tempfile" "$selfurl"
   mv "$tempfile" "$self";chmod +x "$self";exec "$self"; exit 99
 }
+
+echo ""
+echo -e "█▀▀ █▀▀█ ▀▀█▀▀ █\e[34m░░\e[39m█ █▀▀█ █▀▀▄ 　 █▀▀▄ ▀█▀ █▀▀█ █▀▀ "
+echo -e "▀▀█ █▄▄█ \e[34m░░\e[39m█\e[34m░░\e[39m █\e[34m░░\e[39m█ █▄▄▀ █\e[34m░░\e[39m█ 　 █▀▀▄ \e[34m░\e[39m█\e[34m░\e[39m █\e[34m░░\e[39m█ ▀▀█ "
+echo -e "▀▀▀ ▀\e[34m░░\e[39m▀ \e[34m░░\e[39m▀\e[34m░░\e[39m \e[34m░\e[39m▀▀▀ ▀\e[34m░\e[39m▀▀ ▀\e[34m░░\e[39m▀ 　 ▀▀▀\e[34m░\e[39m ▀▀▀ ▀▀▀▀ ▀▀▀ "
+echo ""
+echo -e "█▀▀▄ █▀▀█ █\e[34m░░░\e[39m█ █▀▀▄ █\e[34m░░\e[39m █▀▀█ █▀▀█ █▀▀▄ █▀▀ █▀▀█ "
+echo -e "█\e[34m░░\e[39m█ █\e[34m░░\e[39m█ █▄█▄█ █\e[34m░░\e[39m█ █\e[34m░░\e[39m █\e[34m░░\e[39m█ █▄▄█ █\e[34m░░\e[39m█ █▀▀ █▄▄▀ \e[1m\e[34mversion $version\e[0m"
+echo -e "▀▀▀\e[34m░\e[39m ▀▀▀▀ \e[34m░\e[39m▀\e[34m░\e[39m▀\e[34m░\e[39m ▀\e[34m░░\e[39m▀ ▀▀▀ ▀▀▀▀ ▀\e[34m░░\e[39m▀ ▀▀▀\e[34m░\e[39m ▀▀▀ ▀\e[34m░\e[39m▀▀ \e[34m░░░░░░░ ░░░\e[39m"
+echo ""
+
 
 # Path Priority (https://mister-devel.github.io/MkDocs_MiSTer/cores/paths/#path-priority)
 # There is a priority order of core paths. When you plug in a USB drive and it has a folder /games/Saturn on it (mounted locally as /media/usb<0..5>/games/Saturn when plugged in),
