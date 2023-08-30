@@ -1,5 +1,5 @@
 #!/bin/sh
-version=1.0
+version=1.1
 
 # ===
 bios="df94c5b4d47eb3cc404d88b33a8fda237eaf4720"
@@ -124,7 +124,7 @@ if [ ! -d "$biospack" ]; then
   done
 fi
 echo "Installing $corename bios into $biospath..."
-cp "$biospack/${bios}" "$biospath/boot.rom"
+cp "$biospack/${bios}" "$biospath/boot.bin"
 echo "Finished installing Saturn bios ${biosversion} ${region} version in $biospath" 
 
 echo ""
