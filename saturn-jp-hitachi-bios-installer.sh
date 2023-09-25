@@ -2,10 +2,10 @@
 version=1.3
 
 # ===
-bios="df94c5b4d47eb3cc404d88b33a8fda237eaf4720"
+bios="8c031bf9908fd0142fdd10a9cdd79389f8a3f2fc"
 region="Japan"
-biosversion="1.01"
-name=jp
+biosversion="1.03"
+name="jp-hitachi"
 # ===
 
 biospath=""
