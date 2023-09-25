@@ -3,7 +3,7 @@ version=1.3
 
 # ===
 bios="8c031bf9908fd0142fdd10a9cdd79389f8a3f2fc"
-region="Japan"
+region="Japan Hitachi"
 biosversion="1.03"
 name="jp-hitachi"
 # ===
