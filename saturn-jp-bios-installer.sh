@@ -1,5 +1,5 @@
 #!/bin/sh
-version=1.1
+version=1.2
 
 # ===
 bios="df94c5b4d47eb3cc404d88b33a8fda237eaf4720"
@@ -107,8 +107,8 @@ echo ""
 
 biosurl="https://archive.org/download/segasaturnbios/Sega%20Saturn%20BIOS.zip"
 bioshash="a8cd8951d07cd9ecdc175e9f0462cfb8"
-biosfile="$biosdir/saturnbios.zip"
-biospack="$SCRIPT_DIR/.saturn-bios"
+biosfile="/media/fat/Scripts/saturnbios.zip"
+biospack="/media/fat/Scripts/.saturn-bios"
 
 if [ ! -d "$biospack" ]; then
   mkdir -p "$biospack"
@@ -124,7 +124,7 @@ if [ ! -d "$biospack" ]; then
   done
 fi
 echo "Installing $corename bios into $biospath..."
-cp "$biospack/${bios}" "$biospath/boot.bin"
+cp "$biospack/${bios}" "$biospath/boot.rom"
 echo "Finished installing Saturn bios ${biosversion} ${region} version in $biospath" 
 
 echo ""
