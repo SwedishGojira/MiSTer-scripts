@@ -124,7 +124,7 @@ if [ ! -d "$biospack" ]; then
   done
 fi
 echo "Installing $corename bios into $biospath..."
-if [ -f "$$biospath/boot.bin" ]; then
+if [ -f "$biospath/boot.bin" ]; then
   rm "$biospath/boot.bin"
 fi
 cp "$biospack/${bios}" "$biospath/boot.rom"
