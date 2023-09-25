@@ -20,3 +20,7 @@ Saturn_MiSTer](https://github.com/MiSTer-unstable-nightlies/Saturn_MiSTer) as ba
 Small scripts that will download and install the US or JP recommended bios for the Saturn core.
 
 You only need to install one of the bios, not both. Just make sure you set the region in the core settings to the region matching the game you are loading and it should be working.
+
+> [!NOTE]
+> The Saturn core is still under heavy development and the bios have fluctuated between being called boot.rom and boot.bin.
+> Therefore the bios scripts is made to remove any old bios.bin file and replace it with the downloaded boot.rom which is the correct name for the bios at the moment of writing.
