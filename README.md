@@ -17,7 +17,7 @@ Saturn_MiSTer](https://github.com/MiSTer-unstable-nightlies/Saturn_MiSTer) as ba
 
 
 ## Saturn bios installer scripts
-Small scripts that will download and install the US or JP recommended bios for the Saturn core.
+Small scripts that will download and install the US, JP or JP Hitachi recommended bios for the Saturn core.
 
 You only need to install one of the bios, not both. Just make sure you set the region in the core settings to the region matching the game you are loading and it should be working.
 
