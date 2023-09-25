@@ -1,6 +1,11 @@
 # MiSTer-scripts
 Third party scripts for MiSTer FPGA
 
+> [!IMPORTANT]
+> All of my scripts are made to be run directly on the MiSTer from the standard /media/fat/Scripts directory.
+
+
+
 ## Saturn core updater scripts
 Small scripts that will download the latest successful build of the Saturn core from  from the workflow of [srg320's official Saturn repo on Github](https://github.com/srg320/Saturn_MiSTer).
 
