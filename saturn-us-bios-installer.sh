@@ -1,5 +1,5 @@
 #!/bin/sh
-version=1.3
+version=1.4
 
 # ===
 bios="faa8ea183a6d7bbe5d4e03bb1332519800d3fbc3"
@@ -66,6 +66,7 @@ echo ""
 echo "Detecting $corename file path for bios installation..."
 
 declare -a paths=("/media/fat"
+                  "/media/fat/games"
                   "/media/usb0"
                   "/media/usb1"
                   "/media/usb2"
@@ -80,7 +81,6 @@ declare -a paths=("/media/fat"
                   "/media/usb5/games"
                   "/media/fat/cifs"
                   "/media/fat/cifs/games"
-                  "/media/fat/games"
                   )
 
 # You can access them using echo "${paths[0]}", "${paths[1]}" also
