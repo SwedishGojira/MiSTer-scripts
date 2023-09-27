@@ -24,3 +24,7 @@ You only need to install one of the bios, not both. Just make sure you set the r
 > [!NOTE]
 > The Saturn core is still under heavy development and the bios have fluctuated between being called boot.rom and boot.bin.
 > Therefore the bios scripts is made to remove any old bios.bin file and replace it with the downloaded boot.rom which is the correct name for the bios at the moment of writing.
+
+
+## N64 bios installer scripts
+Small script that will download and install the recommended NTSC and PAL bioses for the N64 core.
